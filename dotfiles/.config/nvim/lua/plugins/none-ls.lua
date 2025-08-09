@@ -12,7 +12,6 @@ return {
 				null_ls.builtins.formatting.shellharden,
 				-- Linting
 				null_ls.builtins.diagnostics.checkmake,
-				null_ls.builtins.diagnostics.cmake_lint,
 			},
 		})
 		vim.keymap.set({ "n", "v" }, "<leader>ff", vim.lsp.buf.format, {})
