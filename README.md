@@ -43,16 +43,16 @@ Install dependecies
 
 CREDIT
 
-- Github: [Bread On Penguins] [Github]
+- Github: [Bread On Penguins] [Github1]
 - Youtube: [Bread On Penguins] [Youtube]
 
-[Github]: https://github.com/BreadOnPenguins
+[Github1]: https://github.com/BreadOnPenguins
 [Youtube]: https://www.youtube.com/@BreadOnPenguins
 
-- Dwmblocks-async: [UtkarshVerma] [Github]
+- Dwmblocks-async: [UtkarshVerma] [Github2]
 
-[Github]: https://github.com/UtkarshVerma/dwmblocks-async
+[Github2]: https://github.com/UtkarshVerma/dwmblocks-async
 
-- Statusbar: [Luke Smith] [Github]
+- Statusbar: [Luke Smith] [Github3]
 
-[Github]: https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar
+[Github3]: https://github.com/LukeSmithxyz/voidrice/tree/master/.local/bin/statusbar
