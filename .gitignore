@@ -1,0 +1,8 @@
+dwm/dwm
+**/*.o
+**/bak/
+dmenu/dmenu
+st/stest
+st/st
+**/build/
+slock/slock

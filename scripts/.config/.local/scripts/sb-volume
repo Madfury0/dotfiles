@@ -1,0 +1,34 @@
+#!/bin/sh
+# Display volume levels using pamixer (matches dwm keybindings)
+
+case "$BLOCK_BUTTON" in
+    1) terminal -e wiremix ;;
+    2) pamixer -t ;;
+    4) pamixer -i 5 ;;
+    5) pamixer -d 5 ;;
+    6) terminal -e "$EDITOR" "$0" ;;
+esac
+
+. sb-theme
+
+# Check mute state
+if pamixer --get-mute | grep -q true; then
+    display " " 9
+    exit
+fi
+
+# Get volume (already integer)
+volume="$(pamixer --get-volume)"
+
+[ -z "$volume" ] && exit 1
+
+# Icons based on volume
+if [ "$volume" -gt 40 ]; then
+    icon=" "
+elif [ "$volume" -gt 15 ]; then
+    icon=" "
+else
+    icon=" "
+fi
+
+display "$icon $volume%"

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+
+CURRENT_WALLPAPER=$(feh --bg-info 2>/dev/null || echo "")
+
+if [[ -z "$CURRENT_WALLPAPER" || ! -f "$CURRENT_WALLPAPER" ]]; then
+    WALLPAPER_DIR="$HOME/Pictures/wallpaper"
+    CURRENT_WALLPAPER=$(ls -t "$WALLPAPER_DIR"/xwallpaper-* 2>/dev/null | head -n1)
+fi
+
+if [[ -z "$CURRENT_WALLPAPER" || ! -f "$CURRENT_WALLPAPER" ]]; then
+    echo "No current wallpaper found for pywal."
+    exit 1
+fi
+
+wal -i "$CURRENT_WALLPAPER" -q -n
+xrdb -merge "$HOME/.cache/wal/colors.Xresources"
+dwmblocks &
+pkill -USR1 st 2>/dev/null
+pgrep dwmblocks >/dev/null && { pkill dwmblocks; dwmblocks & }
+pgrep dunst >/dev/null && { pkill dunst; dunst & }

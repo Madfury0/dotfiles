@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Combined with a cron job, this script downloads random photos from picsum. a random file is choosen if no connectivity is found.
+# https://github.com/BreadOnPenguins/scripts/issues/13
+
+SEARCH="${1:-wallpaper desktop}"
+LNK="https://picsum.photos"
+SRC="https://picsum.photos/1920/1080"
+DEST="/home/$USER/Pictures/wallpaper"
+BRIGHTNESS=100
+
+CURRENT_DESKTOP=$(ps -e | grep -E -i -m 1 -o "xfce|dwm")
+mkdir -p $DEST
+
+get_colortemp() {
+    local img="$1"
+    local brightness
+    brightness=$(magick "$img" -colorspace Gray -format "%[fx:100*mean]" info:)
+    brightness=$(printf "%.0f" "$brightness")
+    echo "$brightness"
+}
+
+set_wallpaper() {
+    local search="${SEARCH// /+}"
+    local timestamp
+    local tmp_img
+    local img_type
+    local ext
+    local resolution="1920x1080"
+    ERROR=$(curl -s -o /dev/null -w "%{http_code}" "$LNK")
+
+    # Loop through active monitors
+    xfeh=$(xrandr --listactivemonitors | sed '1d' | while read -r line; do
+        read -r _ display _ <<<"$line"
+        local link="$SRC"
+        timestamp=$(date +"%Y%m%d-%H%M%S")
+        tmp_img="$DEST/xwallpaper-$timestamp-temp"
+
+        if [[ "$ERROR" != "200" ]]; then
+          # Offline fallback: pick a random local image
+            img=$(shuf -n 1 -e $DEST/* | shuf -n 1)
+            echo "Offline: using local image $img"
+        else
+            # Download a random image from picsum
+            brightness=500
+            while [ $brightness -gt $BRIGHTNESS ]; do
+                wget -q --max-redirect=10 -O "$tmp_img" "$link"
+                echo "WGET RUN: $tmp_img"
+
+                # Check actual MIME type
+                img_type=$(file --mime-type -b "$tmp_img")
+                if [[ "$img_type" == image/* ]]; then
+                    ext=${img_type#*/}            # e.g., jpeg, png, webp
+                    img="$DEST/xwallpaper-$timestamp.$ext"
+                    mv "$tmp_img" "$img"
+                else
+                    rm -f "$tmp_img"
+                    continue
+                fi
+
+                # Get brightness
+                brightness=$(get_colortemp "$img")
+                sleep 1
+            done
+        fi
+
+        # Set wallpaper depending on desktop
+        case "$CURRENT_DESKTOP" in
+        xfce)
+            for monitor in $(xfconf-query -c xfce4-desktop -p /backdrop -l | grep -E -e "$display.last-image$"); do
+                xfconf-query -c xfce4-desktop -p "$monitor" -s "$img"
+            done
+            ;;
+        dwm)
+            xfeh="$xfeh $img"
+            echo "$xfeh"
+            ;;
+        esac
+    done | tail -1)
+
+    # Apply wallpaper for dwm or other feh-based desktops
+    if [[ -n "$xfeh" ]]; then
+        feh --bg-scale $xfeh
+        pywal16 &
+    fi
+}
+
+set_wallpaper
