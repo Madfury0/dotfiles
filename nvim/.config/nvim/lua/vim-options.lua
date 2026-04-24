@@ -3,11 +3,13 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("set wrap!")
 vim.cmd("set expandtab")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set softtabstop=4")
 vim.cmd("set mouse=")
 vim.cmd("let g:lightline = {'colorscheme': 'tokyonight-night'}")
 vim.cmd("set scrolloff=8")
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 -- KEY REMAPS --
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })

@@ -95,4 +95,6 @@ export PATH="$HOME/.local/share/nvim/mason/packages:$PATH"
 export PATH="$HOME/.local/opt/renode_portable:$PATH"
 export PATH="$HOME/.local/opt/ncs/nrf-command-line-tools/bin:$PATH"
 alias nrf_start='nrfutil sdk-manager toolchain launch --ncs-version v3.3.0-rc1 --shell'
-alias nrf_zephyr='source /home/madfury/.local/opt/ncs/v3.3.0-rc1/zephyr/zephyr-env.sh'
+alias nrf_zephyr_env='source /home/madfury/.local/opt/ncs/v3.3.0-rc1/zephyr/zephyr-env.sh'
+alias zephyr_venv='source /home/madfury/.local/opt/zephyrproject/.venv/bin/activate'
+alias zephyr_env='source /home/madfury/.local/opt/zephyrproject/zephyr/zephyr-env.sh'
