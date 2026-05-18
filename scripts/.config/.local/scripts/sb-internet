@@ -1,33 +1,60 @@
 #!/bin/sh
 
-# Show wifi 📶 and percent strength or 📡 if none.
-# Show 🌐 if connected to ethernet or ❎ if none.
-# Show 🔒 if a vpn connection is active
-
 case $BLOCK_BUTTON in
-	1) "$TERMINAL" -e nmtui; pkill -RTMIN+4 dwmblocks ;;
-	3) notify-send "🌐 Internet module" "\- Click to connect
-❌: wifi disabled
-📡: no wifi connection
-📶: wifi connection with quality
-❎: no ethernet
-🌐: ethernet working
-🔒: vpn is active
+    1) "$TERMINAL" -e nmtui; pkill -RTMIN+4 dwmblocks ;;
+    3) notify-send "🌐 internet module" "\
+- click to connect
+󰖪: wifi off
+󰖩: wifi connected
+󰖪: : wifi disconnected
+󰈀: ethernet connected
+󰌙: ethernet disconnected
+󰒘: vpn active
 " ;;
-	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+    6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-# Wifi
-if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
-	wifiicon="$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "% " }' /proc/net/wireless)"
-elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
-	[ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="📡 " || wifiicon="❌ "
+# Load theme (for display function)
+
+# Get active connections
+active="$(nmcli -t -f DEVICE,TYPE,STATE,CONNECTION device)"
+
+wifiicon=""
+ethericon=""
+vpnicon=""
+
+# --- WIFI ---
+wifi_radio="$(nmcli radio wifi)"
+
+if [ "$wifi_radio" = "enabled" ]; then
+    wifi_conn="$(printf "%s\n" "$active" | awk -F: '$2=="wifi" && $3=="connected" {print $4}')"
+
+    if [ "$wifi_conn" != "" ]; then
+        clean_ssid="$(printf "%s" "$wifi_conn" \
+            | sed 's/ [0-9]\+$//' \
+            | tr '[:upper:]' '[:lower:]')"
+        wifiicon="󰖩  $clean_ssid"
+    else
+        wifiicon=""
+    fi
+else
+    wifiicon="󰖪"
 fi
 
-# Ethernet
-[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌐" || ethericon="❎"
+# --- ETHERNET ---
+if printf "%s\n" "$active" | awk -F: '$2=="ethernet" && $3=="connected"' | grep -q .; then
+    ethericon="󰈀    "
+else
+    ethericon=""
+fi
 
-# TUN
-[ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon=" 🔒"
+# --- VPN ---
+if ip link show tun0 >/dev/null 2>&1; then
+    vpnicon="󰒘"
+fi
 
-printf "%s%s%s\n" "$wifiicon" "$ethericon" "$tunicon"
+# --- OUTPUT ---
+output="$(printf "%s%s%s" "$wifiicon" "$ethericon" "$vpnicon" | tr '[:upper:]' '[:lower:]')"
+
+. sb-theme
+display "$output"
