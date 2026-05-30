@@ -1,0 +1,7 @@
+xrandr --output DP-1 --primary --right-of eDP-1
+
+DISPLAY=:0 XAUTHORITY=/home/madfury/.Xauthority /usr/bin/xset s noblank
+
+DISPLAY=:0 XAUTHORITY=/home/madfury/.Xauthority /usr/bin/xset s off
+
+DISPLAY=:0 XAUTHORITY=/home/madfury/.Xauthority /usr/bin/xset -dpms
