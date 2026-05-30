@@ -37,9 +37,75 @@ chmod +x ~/.config/.local/scripts/*
 
 ```
 
-Install dependecies
+Install package dependecies
 
-[TODO]: Add all the dependecies
+alsa-utils
+bat
+bat-extras
+bluez
+bluez-tools
+brightnessctl
+calcure
+calcurse
+cronie
+dmenu-bluetooth
+downgrade
+dunst
+fastfetch
+feh
+fzf
+git
+gvfs
+htop
+jq
+libnotify
+librewolf-bin
+lxappearance
+lxsession
+man-db
+nautilus
+neovim
+networkmanager
+nordic-theme
+nsxiv
+openssh
+pamixer
+pavucontrol
+picom
+pipewire-alsa
+pipewire-pulse
+playerctl
+python-pip
+python-pywal16
+python-pywalfox
+qbittorrent
+reflector
+scrot
+stow
+termusic
+timeshift
+tldr
+ttf-meslo-nerd
+ttf-nerd-fonts-symbols-common
+ttf-nerd-fonts-symbols-mono
+udiskie
+unzip
+vim
+wget
+xclip
+xinput-gui
+xorg-server
+xorg-xev
+xorg-xinit
+xorg-xinput
+xorg-xrandr
+xorg-xset
+xorg-xsetroot
+xsettingsd
+zsh
+zsh-autosuggestions
+zsh-completions
+zsh-syntax-highlighting
 
 CREDIT
 

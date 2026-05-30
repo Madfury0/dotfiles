@@ -233,10 +233,11 @@ static const Key keys[] = {
 /* application bindings */
 	{ MODKEY,			XK_m,          spawn,      {.v = (const char*[]){ "st", "-e", "termusic", NULL } } },
 	{ MODKEY,			XK_w,          spawn,      {.v = (const char*[]){ BROWSER, NULL } } },
-	{ MODKEY,			XK_e,          spawn,      {.v = (const char*[]){ "st", "-e", "fff", NULL } } },
+	{ MODKEY,			XK_e,          spawn,      {.v = (const char*[]){ "nautilus", NULL } } },
+	{ MODKEY,			XK_p,          spawn,      {.v = (const char*[]){ "kicad", NULL } } },
+	{ MODKEY|ShiftMask,	      	XK_d,          spawn,      {.v = (const char*[]){ "discord", NULL } } },
 	{ MODKEY,			XK_n,          spawn,      {.v = (const char*[]){ "st", "-e", "nvim", NULL } } },
 	{ MODKEY|ShiftMask,	        XK_h,          spawn,      {.v = (const char*[]){ "st", "-e", "htop", NULL } } },
-//	{ MODKEY,			XK_p,          spawn,      {.v = (const char*[]){ "darktable", NULL } } },
 
 
 /* script launch bindings */
@@ -260,8 +261,6 @@ static const Key keys[] = {
 	{ MODKEY,	    		XK_F11,        spawn,       SHCMD("playerctl -p termusic play-pause") },
 	{ MODKEY|ShiftMask,		XK_F11,        spawn,       SHCMD("playerctl play-pause") },
 	{ MODKEY,			XK_F10,        spawn,       SHCMD("playerctl -p termusic previous") },
-	{ MODKEY|ShiftMask,		XK_F8,         spawn,       SHCMD("slock systemctl suspend -i") },
-	{ MODKEY,			XK_F8,         spawn,       SHCMD("slock") },
 	{ MODKEY,		      	XK_F7,         spawn,       SHCMD("status-timer") },
 	{ MODKEY|ShiftMask,		XK_F7,         spawn,       SHCMD("status-timer cleanup") },
 /* XF86 Keys*/
