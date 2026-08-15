@@ -42,8 +42,8 @@ static const int showfloating       = 1;        /* 0 means no floating indicator
 static int topbar                   = 1;        /* 0 means bottom bar */
 
 static char dmenufont[]             = "monospace:size=18";
-static const char *fonts[]          = { "Hack Nerd Font Meslo:size=18", "monospace:size=18", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
-// static const char *fonts[]          = { "monospace:size=10", "Hack Nerd Font Mono:size=16", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
+static const char *fonts[]          = { "Hack Nerd Font Meslo:size=20", "monospace:size=18", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
+// static const char *fonts[]          = { "monospace:size=22", "Hack Nerd Font Mono:size=16", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
 
 /* default colors used if xrdb is not loaded */
 static char normbgcolor[]           = "#2e3440";

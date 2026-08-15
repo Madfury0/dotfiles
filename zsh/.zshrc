@@ -93,6 +93,8 @@ date
 export PATH="$XDG_CONFIG_HOME/.local/scripts:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/packages:$PATH"
 export PATH="$HOME/.local/opt/renode_portable:$PATH"
+export PATH="$HOME/.local/opt/ArduinoAppLab_0.10.0_Linux_x86-64:$PATH"
+export PATH="$HOME/.local/opt/VSCode-linux-x64/bin:$PATH"
 export PATH="$HOME/.local/opt/ncs/nrf-command-line-tools/bin:$PATH"
 alias nrf_start='nrfutil sdk-manager toolchain launch --ncs-version v3.3.0-rc1 --shell'
 alias nrf_zephyr_env='source /home/madfury/.local/opt/ncs/v3.3.0-rc1/zephyr/zephyr-env.sh'

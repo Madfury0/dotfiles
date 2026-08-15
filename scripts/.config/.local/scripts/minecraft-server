@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SERVER_DIR="/home/madfury/.local/opt/server-resource-packs"
+RUN_SCRIPT="$SERVER_DIR/run.sh"
+
+cd "$SERVER_DIR"
+exec "$RUN_SCRIPT"
