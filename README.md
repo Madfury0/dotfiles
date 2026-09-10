@@ -39,73 +39,21 @@ chmod +x ~/.config/.local/scripts/*
 
 Install package dependecies
 
-alsa-utils
-bat
-bat-extras
-bluez
-bluez-tools
-brightnessctl
-calcure
-calcurse
-cronie
-dmenu-bluetooth
-downgrade
-dunst
-fastfetch
-feh
-fzf
-git
-gvfs
-htop
-jq
-libnotify
-librewolf-bin
-lxappearance
-lxsession
-man-db
-nautilus
-neovim
-networkmanager
-nordic-theme
-nsxiv
-openssh
-pamixer
-pavucontrol
-picom
-pipewire-alsa
-pipewire-pulse
-playerctl
-python-pip
-python-pywal16
-python-pywalfox
-qbittorrent
-reflector
-scrot
-stow
-termusic
-timeshift
-tldr
-ttf-meslo-nerd
-ttf-nerd-fonts-symbols-common
-ttf-nerd-fonts-symbols-mono
-udiskie
-unzip
-vim
-wget
-xclip
-xinput-gui
-xorg-server
-xorg-xev
-xorg-xinit
-xorg-xinput
-xorg-xrandr
-xorg-xset
-xorg-xsetroot
-xsettingsd
-zsh
-zsh-autosuggestions
-zsh-completions
-zsh-syntax-highlighting
+```sh
+
+sudo pacman -S --needed alsa-utils bat bat-extras bluez bluez-tools brightnessctl \
+calcurse cronie dmenu-bluetooth downgrade dunst fastfetch feh fzf git gvfs \
+htop jq libnotify librewolf-bin lxappearance lxsession man-db nautilus neovim networkmanager \
+nsxiv openssh pamixer pavucontrol picom pipewire-alsa pipewire-pulse playerctl python-pip \
+python-pywal16 qbittorrent reflector scrot stow termusic tldr ttf-meslo-nerd ttf-nerd-fonts-symbols-common \
+ttf-nerd-fonts-symbols-mono udiskie unzip vim wget xclip xinput-gui xorg-server xorg-xev xorg-xinit xorg-xinput \
+xorg-xrandr xorg-xset xorg-xsetroot xsettingsd zsh zsh-completions zsh-syntax-highlighting
+
+```
+```sh
+yay -S calcure nordic-theme zsh-autosuggestions python-pywalfox
+
+```
 
 CREDIT
 
