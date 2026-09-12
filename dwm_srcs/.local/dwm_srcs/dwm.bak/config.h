@@ -22,16 +22,12 @@ dwm-vanitygaps-6.2.diff ----- gaps are functional: your eye is less inclined to 
 dwm-xrdb-6.4.diff - xresource database colors
 */
 
+#include <X11/X.h>
 #include <X11/XF86keysym.h>  // Include the XF86 keys
 
 /* appearance */
 static unsigned int borderpx        = 1;        /* border pixel of windows */
 static unsigned int snap            = 32;       /* snap pixel */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 1;    /* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;        /* 0 means no systray */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 20;       /* horiz outer gap between windows and screen edge */
@@ -301,9 +297,9 @@ static const Button buttons[] = {
 	{ ClkClientWin,			MODKEY,		Button3,	resizemouse,    {0} }, /* right click */
 	{ ClkClientWin,			MODKEY,		Button4,	incrgaps,       {.i = +1} }, /* scroll up */
 	{ ClkClientWin,			MODKEY,		Button5,	incrgaps,       {.i = -1} }, /* scroll down */
-	{ ClkTagBar,			0,		Button1,	view,           {0} },
-	{ ClkTagBar,			0,		Button3,	toggleview,     {0} },
+	{ ClkTagBar,			0,			Button1,	view,           {0} },
+	{ ClkTagBar,			0,			Button3,	toggleview,     {0} },
 	{ ClkTagBar,			MODKEY,		Button1,	tag,            {0} },
 	{ ClkTagBar,			MODKEY,		Button3,	toggletag,      {0} },
-	{ ClkRootWin,			0,		Button2,	togglebar,      {0} }, /* hide bar */
+	{ ClkRootWin,			0,			Button2,	togglebar,      {0} }, /* hide bar */
 };
