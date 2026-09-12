@@ -10,18 +10,40 @@ notify() {
 }
 
 case "$BLOCK_BUTTON" in
-    1) notify "$(acpi -b | awk -F ': |, ' '{printf "%s\n%s\n", $2, $4}')" ;;
+    1)
+        # Only show battery information if acpi is available and a battery exists.
+        if command -v acpi >/dev/null 2>&1 && acpi -b 2>/dev/null | grep -q .; then
+            notify "$(acpi -b | awk -F ': |, ' '{printf "%s\n%s\n", $2, $4}')"
+        fi
+        ;;
     6) terminal -e "$EDITOR" "$0" ;;
 esac
 
 . sb-theme
 
-# Loop through all attached batteries.
+# Find attached batteries.
+batteries=
 for battery in /sys/class/power_supply/BAT?*; do
+    [ -d "$battery" ] || continue
+    batteries="${batteries}${battery}
+"
+done
+
+# No battery found (e.g. desktop PC).
+[ -n "$batteries" ] || exit 0
+
+# Loop through all attached batteries.
+for battery in $batteries; do
     # If non-first battery, print a space separator.
     [ -n "${capacity+x}" ] && printf " "
 
     capacity="$(cat "$battery/capacity" 2>&1)"
+
+    # Make sure capacity is actually numeric.
+    case "$capacity" in
+        ''|*[!0-9]*) exit 0 ;;
+    esac
+
     if [ "$capacity" -gt 90 ]; then
         status=" "
     elif [ "$capacity" -gt 60 ]; then
