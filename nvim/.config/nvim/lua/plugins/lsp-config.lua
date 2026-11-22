@@ -9,8 +9,8 @@ return {
 				capabilities = capabilities,
 			})
 			-- Enabling installed LSPs --
-			vim.lsp.enable("lua_ls")
-			vim.lsp.enable("rust_analyzer")
+			vim.lsp.enable("lua-ls")
+			vim.lsp.enable("rust-analyzer")
 			vim.lsp.enable("clangd")
 			vim.lsp.enable("pylsp")
 			vim.lsp.enable("cmake")
@@ -40,7 +40,14 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "pylsp", "cmake", "bashls" },
+			ensure_installed = {
+				"lua_ls",
+				"rust_analyzer",
+				"clangd",
+				"pylsp",
+				"cmake",
+				"bashls",
+			},
 		},
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },

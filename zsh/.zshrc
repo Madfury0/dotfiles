@@ -97,7 +97,12 @@ export PATH="$HOME/.local/opt/ArduinoAppLab_0.10.0_Linux_x86-64:$PATH"
 export PATH="$HOME/.local/opt/ncs/nrf-command-line-tools/bin:$PATH"
 export PATH="$HOME/.local/opt/stm32cubeide_2.2.0:$PATH"
 export PATH="/opt/stm32cubeprog/bin:$PATH"
+
+export PATH="/home/madfury/.platformio/tools/toolchain-xtensa-esp-elf/bin:$PATH"
 alias nrf_start='nrfutil sdk-manager toolchain launch --ncs-version v3.3.0-rc1 --shell'
 alias nrf_zephyr_env='source /home/madfury/.local/opt/ncs/v3.3.0-rc1/zephyr/zephyr-env.sh'
 alias zephyr_venv='source /home/madfury/.local/opt/zephyrproject/.venv/bin/activate'
 alias zephyr_env='source /home/madfury/.local/opt/zephyrproject/zephyr/zephyr-env.sh'
+
+# Added by the Postman CLI installer
+export PATH='/home/madfury/.local/bin':"$PATH"
