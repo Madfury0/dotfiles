@@ -7,6 +7,7 @@ pywal16 &
 picom &
 dwmblocks &
 dunst &
+dimmer 7 &
 
 xsetroot -cursor_name left_ptr
 
